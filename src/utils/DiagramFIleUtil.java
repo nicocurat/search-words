@@ -26,7 +26,8 @@ public class DiagramFIleUtil {
 
     public void createDiagramNFA(NFA nfa) {
         try{
-            fileWriterNFA.write("digraph { \n\n");
+            fileWriterNFA.write("digraph {\n");
+            fileWriterNFA.write("rankdir = \"LR\"\n\n");
             List<State> states = nfa.getStates();
             //Iterate to write nodes on the file!
             for (State state : states) {

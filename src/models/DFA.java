@@ -11,6 +11,7 @@ public class DFA {
     public DFA() {
         total = 0;
         currentState = new State(false, 0);
+        states.add(currentState);
     }
 
     public int getTotal() {

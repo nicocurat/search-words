@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DFA {
+public class DFA implements FA{
     private int total;
     private List<State> states = new ArrayList<>(); //Mapa que tiene su estado con cada transicion posible!
     private State currentState;

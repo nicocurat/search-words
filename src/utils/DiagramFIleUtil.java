@@ -1,5 +1,6 @@
 package utils;
 
+import models.FA;
 import models.NFA;
 import models.State;
 import models.Transition;
@@ -12,19 +13,18 @@ import java.util.List;
 public class DiagramFIleUtil {
 
     private FileWriter fileWriterNFA;
-    private FileWriter fileWriterDFA;
 
     public DiagramFIleUtil() {}
 
-    public void create(){
+    public void create(String fileName){
         try{
-            fileWriterNFA = new FileWriter("nfa.dot");
+            fileWriterNFA = new FileWriter(fileName);
         } catch(IOException e){
             System.out.println(e.getMessage());
         }
     }
 
-    public void createDiagramNFA(NFA nfa) {
+    public void createDiagramNFA(FA nfa) {
         try{
             fileWriterNFA.write("digraph {\n");
             fileWriterNFA.write("rankdir = \"LR\"\n\n");

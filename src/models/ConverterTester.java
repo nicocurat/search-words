@@ -1,5 +1,6 @@
 package models;
 
+import utils.DiagramFIleUtil;
 import utils.TextReader;
 
 /**
@@ -9,13 +10,17 @@ import utils.TextReader;
 public class ConverterTester {
     public static void main(String[] args) {
         TextReader txt = new TextReader();
-        txt.readFile("test.txt");
+        txt.readFile("hola.txt");
         NFA nfa = new NFA();
         nfa.addWords(txt.getLetters());
-        nfa.getStates().forEach(System.out::println);
+        DiagramFIleUtil nfaDiagram = new DiagramFIleUtil();
+        nfaDiagram.create("nfa.dot");
+        nfaDiagram.createDiagramNFA(nfa);
         NfaConverter converter = new NfaConverter();
         System.out.println("------------");
         DFA dfa = converter.converter(nfa);
-        dfa.getStates().forEach(System.out::println);
+        DiagramFIleUtil dfaDiagram = new DiagramFIleUtil();
+        dfaDiagram.create("dfa.dot");
+        dfaDiagram.createDiagramNFA(dfa);
     }
 }

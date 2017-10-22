@@ -35,7 +35,7 @@ public class NfaConverter {
                     res.getStates().add(auxTrans.get(0).getTo());
                     res.getCurrentState().addTransition(auxTrans.get(0));
                     for (Transition transition : auxTrans) {
-                        unmodifiedStates.add(transition.getTo());
+                        unmodifiedStates.add(transition.getTo().getTransitions().get(0).getTo());
                     }
                     auxTrans.remove(0);
                 } else {

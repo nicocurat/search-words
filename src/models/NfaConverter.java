@@ -34,9 +34,14 @@ public class NfaConverter {
                 } else if (!aux1.equals(res.getCurrentState())){
                     res.getStates().add(auxTrans.get(0).getTo());
                     res.getCurrentState().addTransition(auxTrans.get(0));
-                    for (Transition transition : auxTrans) {
-                        unmodifiedStates.add(transition.getTo().getTransitions().get(0).getTo());
+                    State aux = auxTrans.get(0).getTo();
+                    while (!aux.getTransitions().isEmpty()){
+                        aux = aux.getTransitions().get(0).getTo();
+                        res.getStates().add(aux);
                     }
+                    //for (Transition transiti;on : auxTrans) {
+                    //    unmodifiedStates.add(transition.getTo().getTransitions().get(0).getTo());
+                    //}
                     auxTrans.remove(0);
                 } else {
                     for (Transition transition : auxTrans) {

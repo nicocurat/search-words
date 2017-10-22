@@ -20,7 +20,6 @@ public class TextReader {
             FileReader fileReader = new FileReader(file);
             int a = fileReader.read();
             while (a != -1) {
-                System.out.println(a);
                 Character character = (char) a;
                 letters.add(Character.toLowerCase(character));
                 a = fileReader.read();

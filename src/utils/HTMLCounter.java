@@ -21,4 +21,12 @@ public class HTMLCounter {
     public String getHtmlFileName() {
         return htmlFileName;
     }
+
+    @Override
+    public String toString() {
+        return "HTMLCounter{" +
+                "total=" + total +
+                ", htmlFileName='" + htmlFileName + '\'' +
+                '}';
+    }
 }

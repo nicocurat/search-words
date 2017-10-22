@@ -28,6 +28,32 @@ public class Text {
     }
 
     public void addHtmlFile(String htmlFile) {
-        htmlFiles.add(new HTMLCounter(htmlFile));
+        if(exists(htmlFile)) {
+
+        } else {
+            HTMLCounter htmlCounter = new HTMLCounter(htmlFile);
+            htmlCounter.setTotal(htmlCounter.getTotal() + 1);
+            htmlFiles.add(htmlCounter);
+        }
+    }
+
+    private boolean exists(String htmlFile){
+        for (int i = 0; i < htmlFiles.size(); i++) {
+            if(htmlFile.equals(htmlFiles.get(i).getHtmlFileName())) {
+                HTMLCounter htmlCounter = new HTMLCounter(htmlFile);
+                htmlCounter.setTotal(htmlFiles.get(i).getTotal()+1);
+                htmlFiles.set(i, htmlCounter);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Text{" +
+                "text='" + text + '\'' +
+                ", htmlFiles=" + htmlFiles.toString() +
+                '}';
     }
 }

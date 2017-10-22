@@ -19,6 +19,7 @@ public class ConverterTester {
         NfaConverter converter = new NfaConverter();
         System.out.println("------------");
         DFA dfa = converter.converter(nfa);
+        dfa.getStates().forEach(System.out::println);
         DiagramFIleUtil dfaDiagram = new DiagramFIleUtil();
         dfaDiagram.create("dfa.dot");
         dfaDiagram.createDiagramNFA(dfa);

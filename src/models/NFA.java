@@ -39,9 +39,6 @@ public class NFA implements FA{
                 consume(characters.get(i), true);
                 states.add(currentState);
             } else {
-                if ((int) characters.get(i + 1) == 32) {
-                    consume(characters.get(i), true);
-                }
                 if((int) characters.get(i + 1) == 10) {
                     consume(characters.get(i), true);
                     states.add(currentState);
@@ -49,7 +46,7 @@ public class NFA implements FA{
                 if (isEndOfLine(characters.get(i))) {
                     currentState = states.get(0);
                 }
-                if ((int) characters.get(i + 1) != 32 && (int) characters.get(i+1) != 10 && !isEndOfLine(characters.get(i))) {
+                if ((int) characters.get(i+1) != 10 && !isEndOfLine(characters.get(i))) {
                     consume(characters.get(i), false);
                 }
             }

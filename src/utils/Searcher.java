@@ -58,7 +58,7 @@ public class Searcher {
                     if (Character.isDigit(characters.get(i+1)) || Character.isAlphabetic(characters.get(i+1))){
                         word = new StringBuilder();
                         currentState = dfa.getStates().get(0);
-                        while (characters.get(i) != 32){
+                        while (Character.isDigit(characters.get(i)) || Character.isAlphabetic(characters.get(i))){
                             i += 1;
                         }
                     } else {

@@ -26,6 +26,7 @@ public class HTMLFileWriterUtil {
             for (Character character : characters) {
                 fileWriter.write(character);
             }
+            fileWriter.close();
         } catch (IOException e){
             System.out.println(e.getMessage());
         }

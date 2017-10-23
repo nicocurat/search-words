@@ -41,7 +41,7 @@ public class Searcher {
     public void searchText(List<String> htmlFileNames) {
         for (int i = 0; i < htmlFileNames.size(); i++) {
             textReader = new TextReader();
-            textReader.readFile(htmlFileNames.get(i));
+            textReader.readHTMLFile(htmlFileNames.get(i));
             searchInHtml(textReader.getLetters(), htmlFileNames.get(i));
         }
     }
@@ -51,7 +51,6 @@ public class Searcher {
         StringBuilder word = new StringBuilder();
         Text text;
         for (int i = 0; i < characters.size(); i++) {
-//            modifyHTML(characters);
             if (isInDFA(characters.get(i), currentState)) {
                 currentState = consumeInDFA(characters.get(i), currentState);
                 word.append(characters.get(i));
@@ -68,6 +67,9 @@ public class Searcher {
                             currentState = dfa.getStates().get(0);
                         }
                 }
+            } else {
+                word = new StringBuilder();
+                currentState = dfa.getStates().get(0);
             }
         }
     }
@@ -96,17 +98,6 @@ public class Searcher {
             }
         }
         return state;
-    }
-
-    //Por ahora no modificamos el html a un texto sin tags.
-    private void modifyHTML(List<Character> characters) {
-        List<Character> aux = new ArrayList<>();
-        HTMLFileWriterUtil htmlFileWriterUtil = new HTMLFileWriterUtil();
-        for (int i = 0; i < characters.size(); i++) {
-            if((int) characters.get(i) == 60){ //60 = open tag
-
-            }
-        }
     }
 
     public List<Text> getTexts() {

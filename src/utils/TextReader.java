@@ -30,6 +30,30 @@ public class TextReader {
         }
     }
 
+    public void readHTMLFile(String htmlFile) {
+        try{
+            FileReader fileReader = new FileReader(htmlFile);
+            int a = fileReader.read();
+            while (a != -1) {
+                if(a == 60){ //Condicion para fijarse que no sea tag.
+                    a = fileReader.read();
+                    while (a != 62){
+                        a = fileReader.read();
+                    }
+                    a = fileReader.read();
+                    continue;
+                }
+                Character character = (char) a;
+                letters.add(Character.toLowerCase(character));
+                a = fileReader.read();
+            }
+            fileReader.close();
+        } catch (IOException e) {
+            System.out.println("Failed to read the file!");
+        }
+    }
+
+
     public List<Character> getLetters() {
         return letters;
     }

@@ -28,9 +28,7 @@ public class Text {
     }
 
     public void addHtmlFile(String htmlFile) {
-        if(exists(htmlFile)) {
-
-        } else {
+        if(!exists(htmlFile)) {
             HTMLCounter htmlCounter = new HTMLCounter(htmlFile);
             htmlCounter.setTotal(htmlCounter.getTotal() + 1);
             htmlFiles.add(htmlCounter);

@@ -55,17 +55,22 @@ public class Searcher {
                 currentState = consumeInDFA(characters.get(i), currentState);
                 word.append(characters.get(i));
                 if (currentState.isAcceptance()) {
-                        if (doesTextExists(word.toString()) != -1) {
-                            texts.get(doesTextExists(word.toString())).addHtmlFile(htmlFileName);
-                        } else {
-                            text = new Text(word.toString());
-                            text.addHtmlFile(htmlFileName);
-                            texts.add(text);
-                        }
-                        if (currentState.getTransitions().size() == 0) { //Se fija que el estado en el que esta parado sea el ultimo.
-                            word = new StringBuilder();
-                            currentState = dfa.getStates().get(0);
-                        }
+                    if (Character.isDigit(characters.get(i+1)) || Character.isAlphabetic(characters.get(i+1))){
+                        word = new StringBuilder();
+                        currentState = dfa.getStates().get(0);
+                        continue;
+                    }
+                    if (doesTextExists(word.toString()) != -1) {
+                        texts.get(doesTextExists(word.toString())).addHtmlFile(htmlFileName);
+                    } else {
+                        text = new Text(word.toString());
+                        text.addHtmlFile(htmlFileName);
+                        texts.add(text);
+                    }
+                    if (currentState.getTransitions().size() == 0) { //Se fija que el estado en el que esta parado sea el ultimo.
+                        word = new StringBuilder();
+                        currentState = dfa.getStates().get(0);
+                    }
                 }
             } else {
                 word = new StringBuilder();

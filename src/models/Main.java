@@ -5,17 +5,27 @@ import utils.Searcher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Searcher searcher = new Searcher("hola.txt");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Write the .txt file's directory with the words to be searched:");
+        String text = scanner.next();
+        Searcher searcher = new Searcher(text);
         List<String> htmlFiles = new ArrayList<>();
-        htmlFiles.add("test.html");
-        htmlFiles.add("t.html");
+        System.out.println("Write the .html files in which the words are going to be searched (Write -1 to close" +
+                "the loading of files): ");
+        text = scanner.next();
+        while (!text.equals("-1")){
+            htmlFiles.add(text);
+            text = scanner.next();
+        }
         searcher.searchText(htmlFiles);
         IndexFile indexFile = new IndexFile();
         indexFile.makeIndexFile(searcher.getTexts());
-        searcher.getTexts().forEach(System.out::println);
+        System.out.println("Searching done! Look for the files nfa.dot or dfa.dot to see the automatons created,\n" +
+                "or look for the file index.txt for the amount of words found in the .html files.");
     }
 }

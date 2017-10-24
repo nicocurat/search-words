@@ -70,6 +70,18 @@ public class Searcher {
                             texts.add(text);
                         }
                         if (currentState.getTransitions().size() == 0) { //Se fija que el estado en el que esta parado sea el ultimo.
+                            for (int j = 0; j < word.length(); j++){
+                                if (word.charAt(j) == ' '){
+                                    List<Character> auxWord = new ArrayList<>();
+                                    for (int k = j+1; k < word.length(); k++) {
+                                        auxWord.add(word.charAt(k));
+                                    }
+                                    auxWord.add(' ');
+                                    searchInHtml(auxWord, htmlFileName);
+                                    break;
+                                }
+
+                            }
                             word = new StringBuilder();
                             currentState = dfa.getStates().get(0);
                         }
@@ -106,6 +118,10 @@ public class Searcher {
             }
         }
         return state;
+    }
+
+    private void checkForMiddleWords(){
+
     }
 
     public List<Text> getTexts() {
